@@ -1,246 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FEARLESS FOOTSTEPS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEARLESS FOOTSTEPS | Build Something Legendary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        :root {
+            --primary-red: #e63946;
+            --dark-red: #b91c1c;
+            --white: #fff;
+            --light-gray: #f4f4f4;
+            --black: #1a1a1a;
+        }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
---primary-red:#e63946;
---dark-red:#b91c1c;
---white:#fff;
---light-gray:#f4f4f4;
---black:#1a1a1a;
-}
-body{
-font-family:'Poppins',sans-serif;
-padding-top:70px;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-top: 70px;
+            overflow-x: hidden;
+            background-color: var(--white);
+            color: var(--black);
+        }
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-height:70px;
-background:#fff;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:0 5%;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,.1);
+            z-index: 1000;
+        }
 
-.logo{color:var(--primary-red);font-weight:900;text-decoration:none}
+        .logo { 
+            color: var(--primary-red); 
+            font-weight: 900; 
+            text-decoration: none; 
+            font-size: 1.2rem; 
+            font-family: 'Montserrat';
+            text-transform: uppercase;
+        }
 
-#hero{
-min-height:calc(100vh - 70px);
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
+        .gst-tag { font-size: 0.7rem; font-weight: 700; color: #777; }
 
-#hero h1{
-font-size:5rem;
-font-family:'Montserrat';
-color:var(--dark-red);
-}
+        /* --- HERO SECTION --- */
+        #hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-.btn{
-background:var(--primary-red);
-color:#fff;
-padding:15px 30px;
-text-decoration:none;
-border-radius:6px;
-}
+        #hero h1 {
+            font-size: clamp(3.5rem, 12vw, 7rem);
+            line-height: 0.85;
+            font-family: 'Montserrat';
+            color: var(--dark-red);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
 
-#apply{
-background:var(--light-gray);
-padding:60px 15px;
-}
+        .btn {
+            background: var(--primary-red);
+            color: #fff;
+            padding: 18px 35px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 700;
+            transition: 0.3s;
+            display: inline-block;
+        }
 
-#apply-container{
-max-width:850px;
-margin:auto;
-background:#fff;
-padding:30px;
-border-radius:15px;
-border-top:8px solid var(--primary-red);
-}
+        .btn:hover { background: var(--black); transform: translateY(-3px); }
 
-.field{margin-bottom:20px}
-label{font-weight:700;font-size:.8rem}
-input,textarea{
-width:100%;
-padding:12px;
-border:2px solid #eee;
-border-radius:6px;
-}
+        /* --- ABOUT SECTION --- */
+        #about { padding: 80px 5%; text-align: center; background: #fff; }
+        .about-content { max-width: 800px; margin: 0 auto; font-size: 1.1rem; }
+        .highlight { color: var(--primary-red); font-weight: 700; border-bottom: 3px solid var(--primary-red); }
 
-.salary-tag{
-background:var(--primary-red);
-color:#fff;
-padding:3px 6px;
-border-radius:4px;
-font-size:.7rem;
-font-weight:900;
-}
+        /* --- FORM SECTION --- */
+        #apply { background: var(--light-gray); padding: 60px 5%; }
+        #apply-container {
+            max-width: 850px;
+            margin: auto;
+            background: #fff;
+            padding: clamp(20px, 5vw, 40px);
+            border-radius: 15px;
+            border-top: 8px solid var(--primary-red);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
 
-/* ==== CHECKBOX ANIMATION ==== */
-.check-item{
-background:#fff;
-border:1px solid #ddd;
-padding:15px;
-border-radius:10px;
-margin-bottom:15px;
-cursor:pointer;
-transition:.3s;
-}
+        .field { margin-bottom: 25px; }
+        label { font-weight: 700; font-size: .85rem; display: block; margin-bottom: 8px; text-transform: uppercase; }
+        
+        input[type=text], input[type=email], input[type=url], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
 
-.check-item:hover{
-border-color:var(--primary-red);
-transform:scale(1.02);
-}
+        /* Interactive Roles Styling */
+        .check-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .check-item:hover { border-color: var(--primary-red); }
 
-.check-head{
-display:flex;
-gap:15px;
-align-items:flex-start;
-}
+        .check-head { display: flex; gap: 15px; align-items: flex-start; }
+        .salary-tag {
+            background: var(--primary-red);
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: .7rem;
+            font-weight: 900;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
 
-.check-item input[type=checkbox]{
-accent-color:var(--primary-red);
-margin-top:4px;
-}
+        .sub-box {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: .4s ease;
+            margin-left: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
 
-.sub-box{
-max-height:0;
-overflow:hidden;
-opacity:0;
-transition:.4s ease;
-margin-left:30px;
-margin-top:10px;
-}
+        .check-item.active .sub-box {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 15px;
+        }
 
-.check-item.active .sub-box{
-max-height:200px;
-opacity:1;
-}
+        .option-select { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer; }
 
-.submit-btn{
-width:100%;
-padding:18px;
-background:#000;
-color:#fff;
-border:none;
-font-weight:700;
-border-radius:6px;
-cursor:pointer;
-}
+        /* Social Grid */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
 
-.submit-btn:hover{background:var(--primary-red)}
-</style>
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--black);
+            color: #fff;
+            border: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        .submit-btn:hover { background: var(--primary-red); }
+
+        @media (max-width: 600px) {
+            .sub-box { grid-template-columns: 1fr; }
+            #hero h1 { font-size: 3.2rem; }
+        }
+    </style>
 </head>
-
 <body>
 
 <nav>
-<a href="#" class="logo">FEARLESS FOOTSTEPS</a>
+    <a href="#" class="logo">FEARLESS FOOTSTEPS</a>
+    <span class="gst-tag">GST: 06ADFPM7859K1ZY</span>
 </nav>
 
 <section id="hero">
-<h1>STAY<br>FEARLESS</h1>
-<a href="#apply" class="btn">Join The Team</a>
+    <h1>STAY<br>FEARLESS</h1>
+    <a href="#apply" class="btn">Join The Team</a>
+</section>
+
+<section id="about">
+    <div class="about-content">
+        <p>
+            Fearless Footsteps isn’t just about affiliate marketing. We share & create
+            <span class="highlight">catchy content</span>. We are looking for diligent individuals who
+            are not afraid to take risks - build something legendary.
+        </p>
+    </div>
 </section>
 
 <section id="apply">
-<div id="apply-container">
+    <div id="apply-container">
+        <form action="https://formsubmit.co/maaz02670@gmail.com" method="POST">
+            
+            <input type="text" name="_honey" style="display:none">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="🔥 NEW APPLICATION: Fearless Footsteps">
 
-<form>
+            <div class="field">
+                <label>Name / Nickname</label>
+                <input type="text" name="Name" placeholder="Enter your name" required>
+            </div>
 
-<div class="field">
-<label>Name</label>
-<input type="text" required>
-</div>
+            <div class="field">
+                <label>Email Address</label>
+                <input type="email" name="Email" placeholder="email@example.com" required>
+            </div>
 
-<div class="field">
-<label>Email</label>
-<input type="email" required>
-</div>
+            <label>Select Your Roles (Click to expand options) 👇</label>
 
-<label>Choose Roles 👇</label><br><br>
+            <div class="check-item">
+                <div class="check-head">
+                    <input type="checkbox" class="main-check" name="Category[]" value="Gym & Sports">
+                    <span>
+                        <span class="salary-tag">₹1k - ₹15k Paid</span><br>
+                        <strong>Gym & Sports Assistance</strong>
+                    </span>
+                </div>
+                <div class="sub-box">
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Gym Morning Shift"> Morning Shift (₹15k)</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Gym Evening Shift"> Evening Shift (₹15k)</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Client Photography"> Click Pics of Client</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Manager Guidance"> 2hr Manager Guidance</label>
+                </div>
+            </div>
 
-<label class="check-item">
-<div class="check-head">
-<input type="checkbox">
-<span>
-<span class="salary-tag">₹1k Paid</span><br>
-<strong>Restaurant & Salon Reels</strong>
-</span>
-</div>
+            <div class="check-item">
+                <div class="check-head">
+                    <input type="checkbox" class="main-check" name="Category[]" value="Content Creation">
+                    <span>
+                        <span class="salary-tag">₹1k Per Assignment</span><br>
+                        <strong>Reviews & Speaking Reels</strong>
+                    </span>
+                </div>
+                <div class="sub-box">
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Restaurant Review"> Restaurant Reviews</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Salon Review"> Salon Reviews</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Street Food"> Street Food Reels</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Art Discussion"> 5-Star Hotel Art Reels</label>
+                </div>
+            </div>
 
-<div class="sub-box">
-<input type="text" placeholder="City / Area">
-<input type="text" placeholder="Experience">
-</div>
-</label>
+            <div class="check-item">
+                <div class="check-head">
+                    <input type="checkbox" class="main-check" name="Category[]" value="Movie Analysis">
+                    <span>
+                        <span class="salary-tag">₹1k Per Day</span><br>
+                        <strong>Mall Interview & Movie Analysis</strong>
+                    </span>
+                </div>
+                <div class="sub-box">
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Public Interview"> Talking to Public</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Bollywood Opinion"> Bollywood Expert</label>
+                    <label class="option-select"><input type="checkbox" name="Role[]" value="Mall Assignment"> Mall Assignment</label>
+                </div>
+            </div>
 
-<label class="check-item">
-<div class="check-head">
-<input type="checkbox">
-<span>
-<span class="salary-tag">₹15k Salary</span><br>
-<strong>Gym Assistant</strong>
-</span>
-</div>
+            <div class="field">
+                <label>Gym Experience & Fav Exercises</label>
+                <textarea name="Gym_Experience" rows="2" placeholder="Tell us about your workout routine..."></textarea>
+            </div>
 
-<div class="sub-box">
-<input type="text" placeholder="Gym Name">
-<input type="text" placeholder="Hours Available">
-</div>
-</label>
+            <div class="field">
+                <label>Sports Experience</label>
+                <textarea name="Sports_Experience" rows="2" placeholder="Sports you play or achievements..."></textarea>
+            </div>
 
-<label class="check-item">
-<div class="check-head">
-<input type="checkbox">
-<span>
-<span class="salary-tag">₹1k Paid</span><br>
-<strong>Movie Mall Reviewer</strong>
-</span>
-</div>
+            <div class="social-grid">
+                <div class="field">
+                    <label>Instagram Link</label>
+                    <input type="url" name="Instagram" placeholder="Profile URL">
+                </div>
+                <div class="field">
+                    <label>YouTube/LinkedIn</label>
+                    <input type="url" name="Other_Social" placeholder="Profile URL">
+                </div>
+            </div>
 
-<div class="sub-box">
-<input type="text" placeholder="Favourite Genre">
-<input type="text" placeholder="Mall Name">
-</div>
-</label>
+            <div class="field">
+                <label>Availability</label>
+                <textarea name="Availability" rows="2" placeholder="Days and times you are free" required></textarea>
+            </div>
 
-<div class="field">
-<label>Your Story</label>
-<textarea rows="3"></textarea>
-</div>
+            <div class="field">
+                <label>Your Fearless Story</label>
+                <textarea name="Story" rows="4" placeholder="What makes you fearless and why should we hire you?" required></textarea>
+            </div>
 
-<button class="submit-btn">Submit 🚀</button>
-
-</form>
-
-</div>
+            <button type="submit" class="submit-btn">Submit Application 🚀</button>
+        </form>
+    </div>
 </section>
 
 <script>
-document.querySelectorAll(".check-item").forEach(item=>{
-item.addEventListener("click",e=>{
-if(e.target.tagName!=="INPUT"){
-item.querySelector("input").checked = !item.querySelector("input").checked;
-}
-item.classList.toggle("active");
-});
-});
+    document.querySelectorAll(".check-item").forEach(item => {
+        const mainCheck = item.querySelector(".main-check");
+
+        item.addEventListener("click", e => {
+            // Options के अंदर क्लिक करने पर बंद न हो
+            if (e.target.closest('.sub-box')) return; 
+
+            // Checkbox को टॉगल करें अगर बैकग्राउंड पर क्लिक हुआ है
+            if (e.target !== mainCheck) {
+                mainCheck.checked = !mainCheck.checked;
+            }
+
+            // Visual state अपडेट करें
+            if (mainCheck.checked) {
+                item.classList.add("active");
+            } else {
+                item.classList.remove("active");
+                // अगर मेन बॉक्स अनचेक हो, तो अंदर के सब-चेकबॉक्स भी हटा दें (Optional)
+                item.querySelectorAll(".sub-box input").forEach(el => el.checked = false);
+            }
+        });
+    });
 </script>
 
 </body>
